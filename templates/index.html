@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>AI PDF Pro</title>
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+  <div id="loading" class="overlay">
+    <div class="loader"></div>
+    <h2 style="color: white; margin: 0;">Processing Document...</h2>
+    <p style="color: rgba(255,255,255,0.7);">Generating AI summary in your language</p>
+  </div>
+
+  <div class="container">
+    <h1>📚 AI PDF SUMMARIZER</h1>
+
+    <!-- Status (only Gemini) -->
+    <div class="status-bar">
+      <div class="status-item">
+        <span class="dot online"></span> Gemini
+      </div>
+    </div>
+
+    <form action="/upload" method="post" enctype="multipart/form-data" id="uploadForm">
+      <label class="file-upload">
+        <input type="file" name="file" accept=".pdf" required />
+        <span>📄 Upload PDF</span>
+      </label>
+
+      <select name="language">
+        <option>English</option>
+        <option>Hindi</option>
+        <option>Marathi</option>
+      </select>
+
+      <!-- Hidden Gemini only -->
+      <input type="hidden" name="model_type" value="gemini" />
+
+      <button type="submit">✨ Generate Summary</button>
+    </form>
+  </div>
+
+  <script>
+    const form = document.getElementById('uploadForm');
+    const loading = document.getElementById('loading');
+
+    form.onsubmit = () => {
+      loading.style.display = 'flex';
+      document.body.classList.add('loading');
+    };
+
+    // Remove Ollama status check completely
+
+    window.onpageshow = () => {
+      loading.style.display = "none";
+      document.body.classList.remove("loading");
+    };
+  </script>
+</body>
+</html>

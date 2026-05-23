@@ -1,0 +1,284 @@
+:root {
+  --bg: #020617;  
+  --glass: rgba(255, 255, 255, 0.06);
+  --border: rgba(255, 255, 255, 0.12);
+  --text: #e0f2fe;
+  --accent: #22d3ee;
+
+  /* NEW */
+  --btn-gradient: linear-gradient(135deg, #22d3ee, #3b82f6);
+  --btn-text: #020617;
+  --summary-bg: rgba(15, 23, 42, 0.9);
+}
+
+/* BODY */
+body {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow-x: hidden;
+}
+
+/* MAIN CARD */
+.container {
+  background: var(--glass);
+  backdrop-filter: blur(20px);
+  border: 1.5px solid var(--border);
+  border-radius: 30px;
+  padding: 40px;
+  width: 500px;
+  text-align: center;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+  transition: all 0.3s ease;
+}
+
+/* Status Bar */
+.status-bar {
+  margin: 15px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.status-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 500;
+  color: var(--text);
+}
+
+.dot {
+  height: 12px;
+  width: 12px;
+  border-radius: 50%;
+}
+
+/* Improved Status Colors */
+.online { 
+  background: #22c55e; 
+  box-shadow: 0 0 10px #22c55e;
+}
+
+.offline { 
+  background: #ef4444; 
+  box-shadow: 0 0 10px #ef4444;
+}
+
+/* LOADING OVERLAY */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: var(--bg);
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 99999;
+  text-align: center;
+}
+
+body.loading {
+  overflow: hidden;
+}
+
+body.loading .container {
+  display: none;
+}
+
+/* Loader */
+.loader {
+  width: 60px;
+  height: 60px;
+  border: 5px solid rgba(255,255,255,0.2);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: rotation 1s linear infinite;
+  margin-bottom: 20px;
+}
+
+@keyframes rotation {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* FORM ELEMENTS */
+input[type="file"], select {
+  width: 100%;
+  padding: 15px;
+  margin: 10px 0;
+  border-radius: 15px;
+  border: 1px solid var(--border);
+  font-size: 1rem;
+  box-sizing: border-box;
+  background: rgba(255,255,255,0.05);
+  color: var(--text);
+}
+
+/* BUTTON (🔥 BEST IMPROVED) */
+button {
+  width: 100%;
+  padding: 15px;
+  margin: 12px 0;
+  border-radius: 15px;
+  border: none;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+
+  background: var(--btn-gradient);
+  color: var(--btn-text);
+
+  transition: all 0.3s ease;
+}
+
+/* Button Hover */
+button:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 10px 25px rgba(34, 211, 238, 0.4);
+}
+
+/* Button Active */
+button:active {
+  transform: scale(0.98);
+}
+
+/* SWITCH */
+.switch-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  margin: 25px 0;
+}
+
+.switch { 
+  position: relative; 
+  width: 60px; 
+  height: 30px; 
+}
+
+.switch input { 
+  opacity: 0; 
+  width: 0; 
+  height: 0; 
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  inset: 0;
+  background: rgba(255,255,255,0.2);
+  border-radius: 34px;
+  transition: 0.4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 22px;
+  width: 22px;
+  left: 4px;
+  bottom: 4px;
+  background: rgb(38, 38, 45);
+  border-radius: 50%;
+  transition: 0.4s;
+}
+
+input:checked + .slider { 
+  background: var(--accent);
+}
+
+input:checked + .slider:before { 
+  transform: translateX(30px);
+  background: #020617;
+}
+
+/* SUMMARY BOX (🔥 READABILITY BOOSTED) */
+.summary-box {
+  background: var(--summary-bg);
+  padding: 25px;
+  border-radius: 20px;
+  max-height: 450px;
+  overflow-y: auto;
+  line-height: 1.8;
+  border: 1px solid var(--border);
+  text-align: left;
+  color: #f1f5f9;
+}
+
+.file-upload {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 93%;              /* 🔥 same as select */
+  padding: 15px;            /* same height feel */
+  
+  border-radius: 15px;
+  border: 1px dashed var(--border);
+  
+  background: rgba(255,255,255,0.05);
+  color: var(--text);
+
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  margin: 10px 0;           /* same spacing */
+}
+
+/* Text inside */
+.file-upload span {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--text);
+  opacity: 0.9;
+}
+
+/* Hidden input */
+.file-upload input {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+/* Hover effect (clean glow) */
+.file-upload:hover {
+  background: rgba(34, 211, 238, 0.08);
+  border-color: var(--accent);
+  transform: translateY(-2px);
+}
+
+/* Selected state */
+.file-upload input:valid + span {
+  color: #22c55e;
+}
+
+/* Dropdown main */
+select {
+  background: rgba(255,255,255,0.05);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+
+/* Options visibility fix */
+select option {
+  background: #020617;     /* dark background */
+  color: #e0f2fe;          /* readable text */
+}
+
+/* Hover / selected (some browsers support) */
+select option:checked {
+  background: #3b82f6;
+  color: #ffffff;
+}
